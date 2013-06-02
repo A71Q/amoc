@@ -1,0 +1,82 @@
+#container {
+    width: 98%;
+}
+
+#content {
+    width: 100%;
+}
+
+fieldset.main {
+    border: #858585 1px solid;
+    margin: 10px 5px;
+    background-color: #fbfbfb;
+    text-align: left;
+}
+
+fieldset.summary {
+    padding: 0;
+    margin: 6px;
+    background-color: #e6eaee;
+}
+
+fieldset.summary td {
+    padding: 5px;
+}
+
+fieldset.summary th {
+    background-color: #DCDEE0;
+    border-bottom: 1px solid #FFFFFF;
+    padding: 5px;
+    text-align: left;
+    vertical-align:middle;
+    font-weight:bold;
+}
+
+#footer {
+    padding-right: 2px;
+}
+
+#footer_shadow {
+    display: none;
+}
+
+.right {
+    float: right;
+    padding-right: 20px;
+}
+
+#buttons{
+    height: 33px;
+    margin:0 5px;
+    padding-top: 6px;
+    text-align: center;
+    vertical-align: middle;
+    background: url(../../resources/images/buttons_bg.gif) repeat-x scroll 0 0 transparent;
+}
+
+
+div.buttons td, div.buttons th {
+    padding-left: 12px;
+    padding-right: 12px;
+    border-bottom: 1px solid #0000FF;
+}
+
+div.buttons table {
+    border-top: 1px solid #0000FF;
+    border-right: 1px solid #0000FF;
+    border-left: 1px solid #0000FF;
+}
+
+div.buttons th {
+    background-color: #CCCCCC;
+}
+
+div.buttons td {
+    background-color: #FFFFE5;
+}
+
+div.workflow td, div.buttons th {
+    padding-left: 12px;
+    padding-right: 12px;
+    border-bottom: 1px solid #0000FF;
+}

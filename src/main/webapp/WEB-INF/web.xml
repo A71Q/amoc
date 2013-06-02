@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE web-app PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+        "http://java.sun.com/dtd/web-app_2_3.dtd">
+
+<web-app xmlns="http://java.sun.com/xml/ns/j2ee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee
+            http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"
+         version="2.4">
+    <display-name>Aus Tours</display-name>
+
+    <description>
+        Aus Tours
+    </description>
+
+    <distributable/>
+
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>/WEB-INF/applicationContext.xml</param-value>
+    </context-param>
+
+    <context-param>
+        <param-name>log4jConfigLocation</param-name>
+        <param-value>/WEB-INF/log4j.properties</param-value>
+    </context-param>
+
+    <context-param>
+        <param-name>defaultHtmlEscape</param-name>
+        <param-value>true</param-value>
+    </context-param>
+
+    <context-param>
+        <param-name>javax.servlet.jsp.jstl.fmt.localizationContext</param-name>
+        <param-value>Message</param-value>
+    </context-param>
+
+    <!-- ===================================================================== -->
+    <!--   Filters                                                             -->
+    <!-- ===================================================================== -->
+    <filter>
+        <filter-name>cache</filter-name>
+        <filter-class>net.amoc.servlet.CacheControlFilter</filter-class>
+        <init-param>
+            <param-name>max-age</param-name>
+            <param-value>14400</param-value>
+        </init-param>
+    </filter>
+    <filter>
+        <filter-name>requestTraceFilter</filter-name>
+        <filter-class>net.amoc.track.RequestTraceFilter</filter-class>
+        <init-param>
+            <param-name>excludes</param-name>
+            <param-value>/images/,/js/,/css/,/index.jsp/</param-value>
+        </init-param>
+    </filter>
+    <filter>
+        <filter-name>sitemesh</filter-name>
+        <filter-class>com.opensymphony.sitemesh.webapp.SiteMeshFilter</filter-class>
+    </filter>
+
+
+    <!-- ===================================================================== -->
+    <!--   Filter Mappings                                                     -->
+    <!-- ===================================================================== -->
+    <filter-mapping>
+        <filter-name>cache</filter-name>
+        <url-pattern>/css/*</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>cache</filter-name>
+        <url-pattern>/js/*</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>cache</filter-name>
+        <url-pattern>/jquery/*</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>cache</filter-name>
+        <url-pattern>/images/*</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>requestTraceFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+    <!--Other mapping-->
+    <filter-mapping>
+        <filter-name>sitemesh</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    <!-- ===================================================================== -->
+    <!--   Listeners                                                           -->
+    <!-- ===================================================================== -->
+
+    <listener>
+        <listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>
+    </listener>
+
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
+
+    <!-- ===================================================================== -->
+    <!--   Servlets and their mappings                                         -->
+    <!-- ===================================================================== -->
+    <!-- Spring Dispatcher Servlets -->
+
+    <servlet>
+        <servlet-name>common</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <init-param>
+            <param-name>detectAllViewResolvers</param-name>
+            <param-value>false</param-value>
+        </init-param>
+    </servlet>
+    <servlet>
+        <servlet-name>annotated</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+    </servlet>
+    <!-- ============================== mappings ============================= -->
+
+    <servlet-mapping>
+        <servlet-name>common</servlet-name>
+        <url-pattern>/common/*</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>annotated</servlet-name>
+        <url-pattern>/annotated/*</url-pattern>
+    </servlet-mapping>
+
+    <!-- Session duration in minutes -->
+    <session-config>
+        <session-timeout>15</session-timeout>
+    </session-config>
+
+    <welcome-file-list>
+        <welcome-file>index.jsp</welcome-file>
+    </welcome-file-list>
+
+    <error-page>
+        <error-code>404</error-code>
+        <location>/404.jsp</location>
+    </error-page>
+    <error-page>
+        <exception-type>java.lang.Exception</exception-type>
+        <location>/errorPage.jsp</location>
+    </error-page>
+    <!-- ===================================================================== -->
+    <!--   TAG Library Definitions                                             -->
+    <!-- ===================================================================== -->
+    <jsp-config>
+        <taglib>
+            <taglib-uri>/fn.tld</taglib-uri>
+            <taglib-location>/WEB-INF/tld/fn.tld</taglib-location>
+        </taglib>
+        <taglib>
+            <taglib-uri>/c.tld</taglib-uri>
+            <taglib-location>/WEB-INF/tld/c.tld</taglib-location>
+        </taglib>
+        <taglib>
+            <taglib-uri>/fmt.tld</taglib-uri>
+            <taglib-location>/WEB-INF/tld/fmt.tld</taglib-location>
+        </taglib>
+        <taglib>
+            <taglib-uri>/spring.tld</taglib-uri>
+            <taglib-location>/WEB-INF/tld/spring.tld</taglib-location>
+        </taglib>
+        <taglib>
+            <taglib-uri>/spring-form.tld</taglib-uri>
+            <taglib-location>/WEB-INF/tld/spring-form.tld</taglib-location>
+        </taglib>
+        <taglib>
+            <taglib-uri>/sitemesh-page</taglib-uri>
+            <taglib-location>/WEB-INF/tld/sitemesh-page.tld</taglib-location>
+        </taglib>
+
+        <taglib>
+            <taglib-uri>/sitemesh-decorator</taglib-uri>
+            <taglib-location>/WEB-INF/tld/sitemesh-decorator.tld</taglib-location>
+        </taglib>
+    </jsp-config>
+</web-app>

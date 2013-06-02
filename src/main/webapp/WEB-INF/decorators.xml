@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<decorators defaultdir="/decorators">
+    <decorator name="default-decorator" page="default-decorator.jsp">
+        <pattern>/annotated*</pattern>
+    </decorator>
+
+    <decorator name="empty-decorator" page="empty-decorator.jsp">
+        <pattern>/*</pattern>
+    </decorator>
+
+    <decorator name="popup-decorator" page="popup-decorator.jsp">
+    </decorator>
+
+    <excludes>
+        <pattern>/auth*</pattern>
+        <pattern>/masterLogin*</pattern>
+    </excludes>
+</decorators>
